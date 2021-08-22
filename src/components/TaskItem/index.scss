@@ -1,20 +1,31 @@
+@import "../../assets/styles/mixins";
+
 .task-item {
 	position: relative;
 	background-color: #eaf4d5;
 	border-radius: 13px;
 
 	&__title {
-		font-size: 20px;
+		font-size: 16px;
 		font-weight: bold;
 		color: #444;
+
+		@include md {
+			font-size: 20px;
+		}
 	}
 
 	&__check {
 		position: absolute;
-		top: 10px;
-		right: 10px;
+		top: 4px;
+		right: 4px;
 		color: rgb(196, 196, 196);
 		cursor: pointer;
+
+		@include md {
+			top: 9px;
+			right: 12px;
+		}
 
 		&:hover {
 			color: #28a745;
@@ -22,25 +33,38 @@
 	}
 
 	&__body {
+		font-size: 13px;
+		line-height: 1.8;
 		color: #555;
 		overflow: hidden;
+
+		@include md {
+			font-size: 15px;
+		}
 	}
 
 	&__footer {
 		color: #444;
 
-		div {
-			cursor: pointer;
-			margin-left: 8px;
-			transition: opacity 0.3s ease;
-			&:hover {
-				opacity: 0.5;
+		.task-item__date {
+			font-size: 11px;
+			margin-top: 4px;
+
+			@include md {
+				font-size: 13px;
 			}
 		}
 
-		.task-item__date {
-			font-size: 13px;
-			margin-top: 4px;
+		.task-item__actions {
+			div {
+				cursor: pointer;
+				margin-left: 6px;
+				transition: opacity 0.3s ease;
+
+				&:hover {
+					opacity: 0.5;
+				}
+			}
 		}
 	}
 }

@@ -9,6 +9,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+
 	.modal-overlay {
 		position: absolute;
 		width: 100%;
@@ -16,6 +17,7 @@
 		background-color: rgba(0, 0, 0, 0.5);
 		cursor: pointer;
 	}
+
 	.modal-add {
 		position: relative;
 		width: 94%;

@@ -41,19 +41,24 @@ function TaskItem({ task, index }) {
 				style={{ backgroundColor: colors[index % 7] }}
 			>
 				<h5 className="task-item__title mb-3">{task.title}</h5>
+
 				<div
 					className={`task-item__check p-1 ${task.completed && "text-success"}`}
 					onClick={onHandleCompleted}
 				>
 					<i className="fas fa-check"></i>
 				</div>
+
 				<div className="task-item__body">{task.description}</div>
+
 				<footer className="task-item__footer d-flex justify-content-between mt-3">
 					<span className="task-item__date">{task.date}</span>
+
 					<div className="task-item__actions d-flex">
 						<div className="text-info" onClick={handleEdit}>
 							<i className="far fa-edit p-1"></i>
 						</div>
+
 						<div className="text-danger" onClick={onDeleteTask}>
 							<i className="far fa-trash-alt p-1"></i>
 						</div>

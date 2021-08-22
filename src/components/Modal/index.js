@@ -63,11 +63,12 @@ function Modal(props) {
 
 		if (isValid) {
 			if (taskCurrent) {
-				const newTask = {
+				const taskUpdate = {
 					title,
 					description,
 				};
-				dispatch(editTask(taskCurrent.id, newTask));
+
+				dispatch(editTask(taskCurrent.id, taskUpdate));
 				dispatch(toggleModal());
 			} else {
 				const newTask = {
@@ -77,6 +78,7 @@ function Modal(props) {
 					date: new Date().toLocaleDateString(),
 					completed: false,
 				};
+
 				dispatch(addTasks(newTask));
 				dispatch(toggleModal());
 			}
@@ -84,10 +86,19 @@ function Modal(props) {
 	};
 
 	useEffect(() => {
+		document.body.style.overflow = "hidden";
+
+		return () => {
+			document.body.style.overflow = "unset";
+		};
+	}, []);
+
+	useEffect(() => {
 		if (taskCurrent) {
 			setTitle(taskCurrent.title);
 			setDescription(taskCurrent.description);
 		}
+
 		return () => {
 			dispatch(deleteTaskCurrent());
 		};
@@ -106,6 +117,7 @@ function Modal(props) {
 						<label htmlFor="title" className="mt-3 mb-2">
 							Title
 						</label>
+
 						<input
 							type="text"
 							className={`form-control ${error.title && "border-danger"}`}
@@ -116,12 +128,14 @@ function Modal(props) {
 							value={title}
 						/>
 					</div>
+
 					<span className="text-danger">{error.title}</span>
 
 					<div className="form-group">
 						<label htmlFor="description" className="mt-3 mb-2">
 							Description
 						</label>
+
 						<textarea
 							className={`form-control ${error.description && "border-danger"}`}
 							name="description"
@@ -132,12 +146,14 @@ function Modal(props) {
 							value={description}
 						></textarea>
 					</div>
+
 					<span className="text-danger">{error.description}</span>
 
 					<div className="form-actions d-flex justify-content-end mt-5">
 						<button type="submit" className="btn btn-info text-light">
 							{taskCurrent ? "Save" : "Create"}
 						</button>
+
 						<button className="btn btn-secondary" onClick={onCancel}>
 							Cancel
 						</button>
